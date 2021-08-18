@@ -69,6 +69,33 @@ class HelperDB(
         return lista
     }
 
+    fun buscarDatas(busca: String) : List<Task> {
+
+        val db = readableDatabase ?: return mutableListOf()
+        val lista = mutableListOf<Task>()
+        val sql = "SELECT DISTINCT $COLUMNS_DATE FROM $TABLE_NAME ORDER BY $COLUMNS_DATE"
+        var cursor = db.rawQuery(sql, arrayOf()) ?: return mutableListOf()
+
+        if(cursor == null) {
+            db.close()
+            return mutableListOf()
+        }
+
+        while (cursor.moveToNext()){
+            var task = Task(
+                "",
+                "",
+                cursor.getString(cursor.getColumnIndex(COLUMNS_DATE)),
+                "cursor.getString(cursor.getColumnIndex(COLUMNS_DESCRIPTION))",
+                1
+            )
+            lista.add(task)
+        }
+        return lista
+    }
+
+
+
     fun filtrarTarefas(busca: String) : List<Task> {
         val db = readableDatabase ?: return mutableListOf()
         val lista = mutableListOf<Task>()

@@ -15,6 +15,7 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
     private val adapter by lazy { TaskListAdapter() }
+    private val adapter2 by lazy { DatesAdapter() }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -22,12 +23,12 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         binding.rvTasks.adapter = adapter
+        binding.rvDates.adapter = adapter2
         updateList()
-
-
         insertListeners()
         buscarDados()
-        Log.e("TESTE RCR", buscarDados().toString())
+        buscarDatas()
+
         //DATA STORE
         //ROOM
     }
@@ -58,6 +59,7 @@ class MainActivity : AppCompatActivity() {
     override fun onResume() {
         super.onResume()
         buscarDados()
+        buscarDatas()
     }
 
     private fun updateList() {
@@ -65,10 +67,12 @@ class MainActivity : AppCompatActivity() {
         //val list = filtrarDados()
         //val list = filtrarDados2()
         val list = buscarDados()
+        val list_dates = buscarDatas()
         binding.includeEmpty.emptyState.visibility = if (list.isEmpty()) View.VISIBLE
         else View.GONE
 
         adapter.submitList(list)
+        adapter2.submitList(list_dates)
     }
 
     private fun buscarDados() : List<Task>{
@@ -76,6 +80,18 @@ class MainActivity : AppCompatActivity() {
         var listafiltrada: List<Task> = mutableListOf()
         try {
             listafiltrada = MultiApplication.instance.helperDB?.buscarTarefas(busca) ?: mutableListOf()
+        } catch (ex: Exception){
+            ex.printStackTrace()
+        }
+        return listafiltrada
+    }
+
+
+    private fun buscarDatas() : List<Task>{
+        val busca = ""
+        var listafiltrada: List<Task> = mutableListOf()
+        try {
+            listafiltrada = MultiApplication.instance.helperDB?.buscarDatas(busca) ?: mutableListOf()
         } catch (ex: Exception){
             ex.printStackTrace()
         }
@@ -102,10 +118,6 @@ class MainActivity : AppCompatActivity() {
             ex.printStackTrace()
         }
         return listafiltrada
-    }
-
-    private fun criarTarefa(task: Task){
-
     }
 
     companion object {
