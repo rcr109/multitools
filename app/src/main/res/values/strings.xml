@@ -10,4 +10,17 @@
     <string name="label_edit">Editar</string>
     <string name="label_delete">Deletar</string>
     <string name="label_you_dont_have_tasks">Ops! Você não possui\nnenhum tarefa</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="txt_menu_home">Home</string>
+    <string name="txt_menu_tarefas">Tarefas</string>
+    <string name="txt_menu_sobre">Sobre</string>
+    <string name="txt_close_drawer">Abrir</string>
+    <string name="txt_open_drawer">Fechar</string>
+    <string name="txt_home">Voltar para a tela inicial</string>
+    <string name="txt_desenvolvido">Desenvolvimento: Agosto/2021</string>
+    <string name="txt_finalidade">Finalidade: Bootcamp Santander</string>
+    <string name="txt_curso">Área: Desenvolvimento Mobile</string>
+    <string name="txt_desenvolvedor">Dev: Ricardo Castilho Resende</string>
+    <string name="txt_contato">Contato: rcr109@gmail.com</string>
 </resources>

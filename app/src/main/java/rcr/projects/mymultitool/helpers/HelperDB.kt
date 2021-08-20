@@ -120,6 +120,32 @@ class HelperDB(
         return lista
     }
 
+    fun filtrarPorData(busca: String) : List<Task> {
+        val db = readableDatabase ?: return mutableListOf()
+        val lista = mutableListOf<Task>()
+        val sql = "SELECT * FROM $TABLE_NAME WHERE $COLUMNS_DATE = '"+ busca +"'"
+        var cursor = db.rawQuery(sql, arrayOf()) ?: return mutableListOf()
+
+        if(cursor == null) {
+            db.close()
+            return mutableListOf()
+        }
+
+        while (cursor.moveToNext()){
+            var task = Task(
+                cursor.getString(cursor.getColumnIndex(COLUMNS_TITLE)),
+                cursor.getString(cursor.getColumnIndex(COLUMNS_HOUR)),
+                cursor.getString(cursor.getColumnIndex(COLUMNS_DATE)),
+                cursor.getString(cursor.getColumnIndex(COLUMNS_DESCRIPTION)),
+                cursor.getInt(cursor.getColumnIndex(COLUMNS_ID))
+            )
+            lista.add(task)
+        }
+        return lista
+    }
+
+
+
     fun filtrarTarefas2(busca: String) : List<Task> {
         val db = readableDatabase ?: return mutableListOf()
         val lista = mutableListOf<Task>()

@@ -10,7 +10,7 @@ import rcr.projects.mymultitool.R
 import rcr.projects.mymultitool.databinding.ItemTaskCardBinding
 import rcr.projects.mymultitool.model.Task
 
-class TaskListAdapter : ListAdapter<Task, TaskListAdapter.TaskViewHolder>(DiffCallback()) {
+class TaskListAdapterFiltered : ListAdapter<Task, TaskListAdapterFiltered.TaskViewHolder>(DiffCallback2()) {
 
     var listenerEdit : (Task) -> Unit = {}
     var listenerDelete : (Task) -> Unit = {}
@@ -60,7 +60,7 @@ class TaskListAdapter : ListAdapter<Task, TaskListAdapter.TaskViewHolder>(DiffCa
     }
 }
 
-class DiffCallback : DiffUtil.ItemCallback<Task>() {
+class DiffCallback2 : DiffUtil.ItemCallback<Task>() {
     override fun areItemsTheSame(oldItem: Task, newItem: Task) = oldItem == newItem
     override fun areContentsTheSame(oldItem: Task, newItem: Task) = oldItem.id == newItem.id
 }
