@@ -2,11 +2,8 @@ package rcr.projects.mymultitool.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import rcr.projects.mymultitool.R
-import rcr.projects.mymultitool.databinding.ActivityAddTaskBinding
 import rcr.projects.mymultitool.databinding.ActivityTaskDetailsBinding
 import rcr.projects.mymultitool.datasource.TaskDataSource
-import rcr.projects.mymultitool.extensions.text
 
 class TaskDetails : AppCompatActivity() {
     private lateinit var binding: ActivityTaskDetailsBinding
@@ -15,11 +12,24 @@ class TaskDetails : AppCompatActivity() {
         binding = ActivityTaskDetailsBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        if (intent.hasExtra(AddTaskActivity.TASK_ID)) {
-            val taskId = intent.getIntExtra(AddTaskActivity.TASK_ID, 0)
-            TaskDataSource.findById(taskId)?.let {
-                binding.tvTeste.text = it.description
+        if (intent.hasExtra(task)) {
+            val id = intent.getIntExtra(task, 0)
+            TaskDataSource.findById(id)?.let {
+                binding.tvTitulo.text = "Detalhes da task ${it.id}"
+                binding.tvIdContent.text = " ${it.id}"
+                binding.tvTituloTaskContent.text = " ${it.title}"
+                binding.tvDataContent.text = " ${it.date}"
+                binding.tvHoraContent.text = " ${it.hour}"
+                binding.tvDescricaoContent.text = "${it.description}"
+                binding.fabReturn.setOnClickListener {
+                    finish()
+                }
             }
         }
     }
+
+    companion object {
+        var task = ""
+    }
+
 }

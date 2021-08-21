@@ -81,7 +81,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="sans-serif-condensed-light"
             android:inputType="textMultiLine"
-            android:lines="3"/>
+            android:lines="5"/>
 
 
 

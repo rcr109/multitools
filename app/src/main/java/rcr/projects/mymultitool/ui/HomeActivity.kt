@@ -22,15 +22,7 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
         initDrawer()
         val navigationView = findViewById<View>(R.id.nav_view) as NavigationView
         navigationView.setNavigationItemSelectedListener(this);
-
-
-
     }
-
-
-
-
-
 
     private fun initDrawer(){
         val drawerLayout = findViewById<View>(R.id.drawer_layout) as DrawerLayout
