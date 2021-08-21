@@ -22,6 +22,7 @@
         android:textColor="@color/black"
         android:textSize="18sp"
         android:textStyle="bold"
+        android:fontFamily="sans-serif-condensed-light"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="Passear com o cachorro" />
@@ -34,6 +35,7 @@
             android:textColor="@color/black"
             android:textSize="18sp"
             android:textStyle="bold"
+            android:fontFamily="sans-serif-condensed-light"
             android:layout_marginStart="16dp"
             app:layout_constraintStart_toEndOf="@id/tv_title"
             app:layout_constraintTop_toTopOf="parent"
@@ -46,6 +48,7 @@
         android:layout_height="wrap_content"
         android:textColor="@color/black"
         android:textSize="18sp"
+        android:fontFamily="sans-serif-condensed-light"
         app:layout_constraintStart_toStartOf="@id/tv_title"
         app:layout_constraintTop_toBottomOf="@id/tv_title"
         tools:text="01/01/2021 18:00" />
@@ -56,6 +59,7 @@
         android:layout_height="wrap_content"
         android:textColor="@color/black"
         android:textSize="16sp"
+        android:fontFamily="sans-serif-condensed-light"
         app:layout_constraintTop_toBottomOf="@id/tv_date"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

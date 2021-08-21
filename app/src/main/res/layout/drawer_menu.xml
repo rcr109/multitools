@@ -3,6 +3,7 @@
     android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     tools:openDrawer="start">
@@ -14,8 +15,9 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="start"
+        app:headerLayout="@layout/menu_drawer_header"
         app:menu="@menu/menu_drawer"
-
+        app:itemTextAppearance="@style/NavigationItemAppearance"
         />
 
 </androidx.drawerlayout.widget.DrawerLayout>

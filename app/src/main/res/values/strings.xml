@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">MultiTool</string>
+    <string name="app_name">TaskNote</string>
     <string name="label_new_task">Criar Tarefa</string>
     <string name="label_title">Título</string>
     <string name="label_date">Data</string>
@@ -10,7 +10,6 @@
     <string name="label_edit">Editar</string>
     <string name="label_delete">Deletar</string>
     <string name="label_you_dont_have_tasks">Ops! Você não possui\nnenhum tarefa</string>
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="txt_menu_home">Home</string>
     <string name="txt_menu_tarefas">Tarefas</string>
@@ -23,4 +22,9 @@
     <string name="txt_curso">Área: Desenvolvimento Mobile</string>
     <string name="txt_desenvolvedor">Dev: Ricardo Castilho Resende</string>
     <string name="txt_contato">Contato: rcr109@gmail.com</string>
+    <string name="txt_descricao">Descrição</string>
+    <string name="txt_titulo_nova_tarefa">Nova tarefa</string>
+    <string name="txt_teste_data">01/01/79</string>
+    <string name="txt_menu_sair">Sair</string>
+    <string name="txt_titulo_tela_add">Edição de tarefa</string>
 </resources>

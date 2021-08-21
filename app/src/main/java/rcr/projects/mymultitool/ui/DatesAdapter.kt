@@ -39,9 +39,11 @@ class DatesAdapter : ListAdapter<Task, DatesAdapter.DatesViewHolder>(DiffCallbac
     ) : RecyclerView.ViewHolder(binding.root) {
 
         fun bind(item: Task) {
-            binding.txtSquare.text = item.date.toString()
+            binding.txtSquare.text = item.date.substring(0, 2)
+            binding.txtSquare1.text = item.date.substring(3, 5)
+            binding.txtSquare2.text = item.date.substring(6, 10)
 
-            binding.txtSquare.setOnClickListener {
+            binding.cvDates.setOnClickListener {
 
                 val date = item.date
                 val lista = TaskDataSource.findByDate(date)

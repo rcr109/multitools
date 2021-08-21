@@ -48,7 +48,10 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
         } else if (id == R.id.action_tarefas) {
             val i = Intent(this, MainActivity::class.java)
             startActivity(i)
-        } else if (id == R.id.action_sobre) {
+        } else if (id == R.id.action_sair) {
+            val i = Intent(this, SobreActivity::class.java)
+            finishAffinity()
+        }else if (id == R.id.action_sobre) {
             val i = Intent(this, SobreActivity::class.java)
             startActivity(i)
         }

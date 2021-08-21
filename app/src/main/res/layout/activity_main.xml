@@ -6,7 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".ui.MainActivity">
 
-
     <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_dates"
             android:layout_width="match_parent"
@@ -18,8 +17,6 @@
             tools:visibility="visible"
             app:layout_constraintTop_toTopOf="parent"
     />
-
-
 
     <TextView
         android:id="@+id/tv_title"
@@ -42,7 +39,6 @@
         android:id="@+id/rv_tasks"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintBottom_toTopOf="@id/fab_new"
         app:layout_constraintTop_toBottomOf="@id/tv_title"
@@ -55,17 +51,18 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
+        app:backgroundTint="@color/laranja"
         android:contentDescription="@string/txt_home"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@id/fab_new"
-
-        app:srcCompat="@drawable/ic_home" />
+        app:srcCompat="@drawable/ic_back2" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab_new"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
+        app:backgroundTint="@color/laranja"
         android:contentDescription="@string/label_description_new_task"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

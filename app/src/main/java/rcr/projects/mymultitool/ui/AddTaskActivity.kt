@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.datepicker.MaterialDatePicker
 import com.google.android.material.timepicker.MaterialTimePicker
 import com.google.android.material.timepicker.TimeFormat
+import rcr.projects.mymultitool.R
 import rcr.projects.mymultitool.databinding.ActivityAddTaskBinding
 import rcr.projects.mymultitool.datasource.TaskDataSource
 import rcr.projects.mymultitool.extensions.format
@@ -30,6 +31,7 @@ class AddTaskActivity : AppCompatActivity() {
                 binding.tilDate.text = it.date
                 binding.tilHour.text = it.hour
                 binding.tilDescription.text = it.description
+                binding.tvTitulo.text = getString(R.string.txt_titulo_tela_add)
             }
         }
 
@@ -63,11 +65,8 @@ class AddTaskActivity : AppCompatActivity() {
             timePicker.show(supportFragmentManager, null)
         }
 
-        binding.btnCancel.setOnClickListener {
-            finish()
-        }
 
-        binding.btnNewTask.setOnClickListener {
+        binding.fabCheck.setOnClickListener {
             val task = Task(
                 title = binding.tilTitle.text,
                 date = binding.tilDate.text,
@@ -77,6 +76,10 @@ class AddTaskActivity : AppCompatActivity() {
             )
             TaskDataSource.insertTask(task)
             setResult(Activity.RESULT_OK)
+            finish()
+        }
+
+        binding.fabCancel.setOnClickListener {
             finish()
         }
     }
