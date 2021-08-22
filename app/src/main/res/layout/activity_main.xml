@@ -56,8 +56,19 @@
         app:backgroundTint="@color/laranja"
         android:contentDescription="@string/txt_home"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/fab_new"
+        app:layout_constraintEnd_toStartOf="@id/fab_all"
         app:srcCompat="@drawable/ic_back2" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab_all"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        app:backgroundTint="@color/laranja"
+        android:contentDescription="@string/txt_all_tasks"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/fab_new"
+        app:srcCompat="@drawable/ic_all" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab_new"
@@ -68,7 +79,6 @@
         android:contentDescription="@string/label_description_new_task"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-
         app:srcCompat="@drawable/ic_add" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

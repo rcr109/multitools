@@ -52,7 +52,7 @@ class HelperDB(
     fun buscarTarefas(busca: String) : List<Task> {
         val db = readableDatabase ?: return mutableListOf()
         val lista = mutableListOf<Task>()
-        var sql : String = ""
+        var sql = ""
         if (busca == ""){
             sql = "SELECT * FROM $TABLE_NAME ORDER BY $COLUMNS_YEAR, $COLUMNS_MONTH, $COLUMNS_DAY"
         } else {
@@ -93,7 +93,6 @@ class HelperDB(
             db.close()
             return mutableListOf()
         }
-
         while (cursor.moveToNext()){
             var task = Task(
                 "",

@@ -1,20 +1,14 @@
 package rcr.projects.mymultitool.adapters
 
-import android.content.Context
-import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import rcr.projects.mymultitool.R
-import rcr.projects.mymultitool.application.addWatermark
-import rcr.projects.mymultitool.databinding.DateSquaredBinding
 import rcr.projects.mymultitool.databinding.DateSquaredTwoBinding
 import rcr.projects.mymultitool.datasource.TaskDataSource
 import rcr.projects.mymultitool.model.Task
-import rcr.projects.mymultitool.ui.TasksByDate
 
 class DatesAdapter : ListAdapter<Task, DatesAdapter.DatesViewHolder>(DiffCallback1()) {
 
@@ -30,13 +24,7 @@ class DatesAdapter : ListAdapter<Task, DatesAdapter.DatesViewHolder>(DiffCallbac
 
     private fun itemClicado(it : View, data: String) {
         TaskDataSource.findTasksDate(data)
-        //val context: Context = it.getContext()
-        //val intent = Intent(context, TasksByDate::class.java)
-        //intent.putExtra(TasksByDate.data, data)
-        //context.startActivity(intent)
     }
-
-
 
     inner class DatesViewHolder(
         private val binding: DateSquaredTwoBinding
@@ -51,8 +39,6 @@ class DatesAdapter : ListAdapter<Task, DatesAdapter.DatesViewHolder>(DiffCallbac
                 val date = item.date
                 itemClicado(it, date)
             }
-
-
         }
     }
 
