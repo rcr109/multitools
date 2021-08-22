@@ -2,6 +2,7 @@ package rcr.projects.mymultitool.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import rcr.projects.mymultitool.R
 import rcr.projects.mymultitool.adapters.TaskListAdapter
 import rcr.projects.mymultitool.adapters.TasksByDateListAdapter
@@ -43,6 +44,8 @@ class TasksByDate : AppCompatActivity() {
         }
         return listafiltrada
     }
+
+
 
     companion object {
         var data = ""

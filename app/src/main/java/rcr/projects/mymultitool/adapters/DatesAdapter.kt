@@ -12,6 +12,7 @@ import rcr.projects.mymultitool.R
 import rcr.projects.mymultitool.application.addWatermark
 import rcr.projects.mymultitool.databinding.DateSquaredBinding
 import rcr.projects.mymultitool.databinding.DateSquaredTwoBinding
+import rcr.projects.mymultitool.datasource.TaskDataSource
 import rcr.projects.mymultitool.model.Task
 import rcr.projects.mymultitool.ui.TasksByDate
 
@@ -28,10 +29,11 @@ class DatesAdapter : ListAdapter<Task, DatesAdapter.DatesViewHolder>(DiffCallbac
     }
 
     private fun itemClicado(it : View, data: String) {
-        val context: Context = it.getContext()
-        val intent = Intent(context, TasksByDate::class.java)
-        intent.putExtra(TasksByDate.data, data)
-        context.startActivity(intent)
+        TaskDataSource.findTasksDate(data)
+        //val context: Context = it.getContext()
+        //val intent = Intent(context, TasksByDate::class.java)
+        //intent.putExtra(TasksByDate.data, data)
+        //context.startActivity(intent)
     }
 
 
@@ -53,7 +55,6 @@ class DatesAdapter : ListAdapter<Task, DatesAdapter.DatesViewHolder>(DiffCallbac
 
         }
     }
-
 
     fun nomeMes(mes: String): String {
         val mes = mes

@@ -3,6 +3,7 @@ package rcr.projects.mymultitool.ui
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import rcr.projects.mymultitool.R
 import rcr.projects.mymultitool.databinding.ActivityMainBinding
 import rcr.projects.mymultitool.databinding.ActivitySobreBinding
@@ -21,6 +22,8 @@ class SobreActivity : AppCompatActivity() {
             finish()
         }
     }
+
+
 
 
 }

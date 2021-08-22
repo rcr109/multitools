@@ -52,7 +52,13 @@ class HelperDB(
     fun buscarTarefas(busca: String) : List<Task> {
         val db = readableDatabase ?: return mutableListOf()
         val lista = mutableListOf<Task>()
-        val sql = "SELECT * FROM $TABLE_NAME ORDER BY $COLUMNS_YEAR, $COLUMNS_MONTH, $COLUMNS_DAY"
+        var sql : String = ""
+        if (busca == ""){
+            sql = "SELECT * FROM $TABLE_NAME ORDER BY $COLUMNS_YEAR, $COLUMNS_MONTH, $COLUMNS_DAY"
+        } else {
+            sql = "SELECT * FROM $TABLE_NAME WHERE $COLUMNS_DATE = '"+ busca +"' ORDER BY $COLUMNS_YEAR, $COLUMNS_MONTH, $COLUMNS_DAY"
+        }
+
         var cursor = db.rawQuery(sql, arrayOf()) ?: return mutableListOf()
 
         if(cursor == null) {
@@ -100,6 +106,7 @@ class HelperDB(
             )
             lista.add(task)
         }
+        db.close()
         return lista
     }
 

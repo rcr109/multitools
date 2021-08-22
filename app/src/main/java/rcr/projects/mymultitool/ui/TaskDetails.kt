@@ -2,6 +2,7 @@ package rcr.projects.mymultitool.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import rcr.projects.mymultitool.databinding.ActivityTaskDetailsBinding
 import rcr.projects.mymultitool.datasource.TaskDataSource
 
@@ -27,6 +28,8 @@ class TaskDetails : AppCompatActivity() {
             }
         }
     }
+
+
 
     companion object {
         var task = ""

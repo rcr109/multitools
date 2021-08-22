@@ -1,6 +1,7 @@
 package rcr.projects.mymultitool.ui
 
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
@@ -14,8 +15,7 @@ import rcr.projects.mymultitool.model.Task
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
-    private val adapter by lazy { TaskListAdapter() }
-    private val adapter2 by lazy { DatesAdapter() }
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -90,8 +90,11 @@ class MainActivity : AppCompatActivity() {
         return listafiltradadatas
     }
 
+
     companion object {
         private const val CREATE_NEW_TASK = 1000
+        val adapter by lazy { TaskListAdapter() }
+        val adapter2 by lazy { DatesAdapter() }
     }
 
 }

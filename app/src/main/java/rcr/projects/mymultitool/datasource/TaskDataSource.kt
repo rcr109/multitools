@@ -2,6 +2,8 @@ package rcr.projects.mymultitool.datasource
 
 import rcr.projects.mymultitool.application.MultiApplication
 import rcr.projects.mymultitool.model.Task
+import rcr.projects.mymultitool.ui.MainActivity
+
 
 object TaskDataSource {
 
@@ -9,9 +11,6 @@ object TaskDataSource {
         if (task.id == 0) {
             MultiApplication.instance.helperDB?.criarTarefa(task)
         } else {
-
-
-            // TODO MultiApplication.instance.helperDB?.atualizarTarefa(task)
             MultiApplication.instance.helperDB?.excluirTarefa(task)
             MultiApplication.instance.helperDB?.criarTarefa(task)
         }
@@ -22,7 +21,11 @@ object TaskDataSource {
 
     fun findByDate(date: String) = MultiApplication.instance.helperDB?.filtrarPorData(date)
 
+    fun findTasksDate(date: String) {
+        val lista = MultiApplication.instance.helperDB?.buscarTarefas(date)
+        MainActivity.adapter.submitList(lista)
 
+    }
 
     fun deleteTask(task: Task) {
         MultiApplication.instance.helperDB?.excluirTarefa(task)
