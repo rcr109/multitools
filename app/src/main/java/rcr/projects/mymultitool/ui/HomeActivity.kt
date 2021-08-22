@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.MenuItem
 import android.view.View
+import android.widget.ImageView
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
@@ -22,6 +23,10 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
         initDrawer()
         val navigationView = findViewById<View>(R.id.nav_view) as NavigationView
         navigationView.setNavigationItemSelectedListener(this);
+        val calendar_image = findViewById<ImageView>(R.id.iv_calendar)
+        calendar_image.setOnClickListener {
+            openCloseNavigationDrawer(it)
+        }
     }
 
     private fun initDrawer(){
@@ -29,6 +34,15 @@ class HomeActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
         val toggle = ActionBarDrawerToggle(this, drawerLayout, null,R.string.txt_open_drawer , R.string.txt_close_drawer)
         drawerLayout.addDrawerListener(toggle)
         toggle.syncState()
+    }
+
+    fun openCloseNavigationDrawer(view: View) {
+        val drawer_layout = findViewById<View>(R.id.drawer_layout) as DrawerLayout
+        if (drawer_layout.isDrawerOpen(GravityCompat.START)) {
+            drawer_layout.closeDrawer(GravityCompat.START)
+        } else {
+            drawer_layout.openDrawer(GravityCompat.START)
+        }
     }
 
     @Override

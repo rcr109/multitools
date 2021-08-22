@@ -20,6 +20,9 @@ class HelperDB(
     val COLUMNS_TITLE = "title"
     val COLUMNS_DESCRIPTION = "description"
     val COLUMNS_DATE = "date"
+    val COLUMNS_DAY = "day"
+    val COLUMNS_MONTH = "month"
+    val COLUMNS_YEAR = "year"
     val COLUMNS_HOUR = "hour"
     val DROP_TABLE = "DROP TABLE IF EXISTS $TABLE_NAME"
     val CREATE_TABLE = "CREATE TABLE $TABLE_NAME (" +
@@ -27,6 +30,9 @@ class HelperDB(
             "$COLUMNS_TITLE TEXT NOT NULL," +
             "$COLUMNS_DESCRIPTION TEXT NOT NULL," +
             "$COLUMNS_DATE TEXT NOT NULL," +
+            "$COLUMNS_DAY TEXT," +
+            "$COLUMNS_MONTH TEXT," +
+            "$COLUMNS_YEAR TEXT," +
             "$COLUMNS_HOUR TEXT NULL," +
             "" +
             "PRIMARY KEY($COLUMNS_ID AUTOINCREMENT)" +
@@ -44,11 +50,9 @@ class HelperDB(
     }
 
     fun buscarTarefas(busca: String) : List<Task> {
-        //criarTarefa(Task("TRT", "14:00", "11/01/2022", "Vamos para uma nova tarefa incluída no banco de dados."))
-        //criarTarefa2(Task("Exemplo", "10:20", "18/10/2020", "Inserido pelo método de inserção número 2"))
         val db = readableDatabase ?: return mutableListOf()
         val lista = mutableListOf<Task>()
-        val sql = "SELECT * FROM $TABLE_NAME ORDER BY $COLUMNS_DATE"
+        val sql = "SELECT * FROM $TABLE_NAME ORDER BY $COLUMNS_YEAR, $COLUMNS_MONTH, $COLUMNS_DAY"
         var cursor = db.rawQuery(sql, arrayOf()) ?: return mutableListOf()
 
         if(cursor == null) {
@@ -61,6 +65,9 @@ class HelperDB(
                 cursor.getString(cursor.getColumnIndex(COLUMNS_TITLE)),
                 cursor.getString(cursor.getColumnIndex(COLUMNS_HOUR)),
                 cursor.getString(cursor.getColumnIndex(COLUMNS_DATE)),
+                cursor.getString(cursor.getColumnIndex(COLUMNS_DAY)),
+                cursor.getString(cursor.getColumnIndex(COLUMNS_MONTH)),
+                cursor.getString(cursor.getColumnIndex(COLUMNS_YEAR)),
                 cursor.getString(cursor.getColumnIndex(COLUMNS_DESCRIPTION)),
                 cursor.getInt(cursor.getColumnIndex(COLUMNS_ID))
             )
@@ -73,7 +80,7 @@ class HelperDB(
 
         val db = readableDatabase ?: return mutableListOf()
         val lista = mutableListOf<Task>()
-        val sql = "SELECT DISTINCT $COLUMNS_DATE FROM $TABLE_NAME ORDER BY $COLUMNS_DATE"
+        val sql = "SELECT DISTINCT $COLUMNS_DATE FROM $TABLE_NAME ORDER BY $COLUMNS_YEAR, $COLUMNS_MONTH, $COLUMNS_DAY"
         var cursor = db.rawQuery(sql, arrayOf()) ?: return mutableListOf()
 
         if(cursor == null) {
@@ -86,8 +93,10 @@ class HelperDB(
                 "",
                 "",
                 cursor.getString(cursor.getColumnIndex(COLUMNS_DATE)),
-                "cursor.getString(cursor.getColumnIndex(COLUMNS_DESCRIPTION))",
-                1
+                "",
+                "",
+                "",
+                "1"
             )
             lista.add(task)
         }
@@ -112,6 +121,9 @@ class HelperDB(
                 cursor.getString(cursor.getColumnIndex(COLUMNS_TITLE)),
                 cursor.getString(cursor.getColumnIndex(COLUMNS_HOUR)),
                 cursor.getString(cursor.getColumnIndex(COLUMNS_DATE)),
+                cursor.getString(cursor.getColumnIndex(COLUMNS_DAY)),
+                cursor.getString(cursor.getColumnIndex(COLUMNS_MONTH)),
+                cursor.getString(cursor.getColumnIndex(COLUMNS_YEAR)),
                 cursor.getString(cursor.getColumnIndex(COLUMNS_DESCRIPTION)),
                 cursor.getInt(cursor.getColumnIndex(COLUMNS_ID))
             )
@@ -136,6 +148,9 @@ class HelperDB(
                 cursor.getString(cursor.getColumnIndex(COLUMNS_TITLE)),
                 cursor.getString(cursor.getColumnIndex(COLUMNS_HOUR)),
                 cursor.getString(cursor.getColumnIndex(COLUMNS_DATE)),
+                cursor.getString(cursor.getColumnIndex(COLUMNS_DAY)),
+                cursor.getString(cursor.getColumnIndex(COLUMNS_MONTH)),
+                cursor.getString(cursor.getColumnIndex(COLUMNS_YEAR)),
                 cursor.getString(cursor.getColumnIndex(COLUMNS_DESCRIPTION)),
                 cursor.getInt(cursor.getColumnIndex(COLUMNS_ID))
             )
@@ -163,6 +178,9 @@ class HelperDB(
                 cursor.getString(cursor.getColumnIndex(COLUMNS_TITLE)),
                 cursor.getString(cursor.getColumnIndex(COLUMNS_HOUR)),
                 cursor.getString(cursor.getColumnIndex(COLUMNS_DATE)),
+                cursor.getString(cursor.getColumnIndex(COLUMNS_DAY)),
+                cursor.getString(cursor.getColumnIndex(COLUMNS_MONTH)),
+                cursor.getString(cursor.getColumnIndex(COLUMNS_YEAR)),
                 cursor.getString(cursor.getColumnIndex(COLUMNS_DESCRIPTION)),
                 cursor.getInt(cursor.getColumnIndex(COLUMNS_ID))
             )
@@ -174,14 +192,14 @@ class HelperDB(
 
 
     fun selecionarTarefa(id: Int) : Task {
-        var task = Task("Busca vazia", "00:01", "01/01/1979","Não existem tarefas com esse ID", 0)
+        var task = Task("Busca vazia", "00:01", "01/01/1979","", "", "", "Não existem tarefas com esse ID", 0 )
         val db = readableDatabase ?: return task
         val sql = "SELECT * FROM $TABLE_NAME WHERE $COLUMNS_ID = $id"
         var cursor = db.rawQuery(sql, arrayOf()) ?: return task
 
         if(cursor == null) {
             db.close()
-            return Task("Busca vazia", "00:01", "01/01/1979","Não existem tarefas com esse ID", 0)
+            return Task("Busca vazia", "00:01", "01/01/1979","", "", "", "Não existem tarefas com esse ID")
         }
 
         while (cursor.moveToNext()){
@@ -189,6 +207,9 @@ class HelperDB(
                 cursor.getString(cursor.getColumnIndex(COLUMNS_TITLE)),
                 cursor.getString(cursor.getColumnIndex(COLUMNS_HOUR)),
                 cursor.getString(cursor.getColumnIndex(COLUMNS_DATE)),
+                cursor.getString(cursor.getColumnIndex(COLUMNS_DAY)),
+                cursor.getString(cursor.getColumnIndex(COLUMNS_MONTH)),
+                cursor.getString(cursor.getColumnIndex(COLUMNS_YEAR)),
                 cursor.getString(cursor.getColumnIndex(COLUMNS_DESCRIPTION)),
                 cursor.getInt(cursor.getColumnIndex(COLUMNS_ID))
             )
@@ -200,8 +221,8 @@ class HelperDB(
 
     fun criarTarefa(task: Task){
         val db = writableDatabase ?: return
-        val sql = "INSERT INTO $TABLE_NAME ($COLUMNS_TITLE, $COLUMNS_HOUR, $COLUMNS_DATE, $COLUMNS_DESCRIPTION) VALUES (?, ?, ?, ?)"
-        var array = arrayOf(task.title, task.hour, task.date, task.description)
+        val sql = "INSERT INTO $TABLE_NAME ($COLUMNS_TITLE, $COLUMNS_HOUR, $COLUMNS_DATE, $COLUMNS_DAY, $COLUMNS_MONTH, $COLUMNS_YEAR, $COLUMNS_DESCRIPTION) VALUES (?, ?, ?, ?, ?, ?, ?)"
+        var array = arrayOf(task.title, task.hour, task.date, task.date.substring(0,2), task.date.substring(3,5), task.date.substring(6,10), task.description)
         db.execSQL(sql, array)
         db.close()
     }

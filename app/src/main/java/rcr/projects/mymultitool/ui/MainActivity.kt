@@ -1,12 +1,9 @@
 package rcr.projects.mymultitool.ui
 
-import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContextCompat.startActivity
 import rcr.projects.mymultitool.adapters.DatesAdapter
 import rcr.projects.mymultitool.adapters.TaskListAdapter
 import rcr.projects.mymultitool.application.MultiApplication
@@ -62,13 +59,13 @@ class MainActivity : AppCompatActivity() {
         updateList()
     }
 
-    fun updateList() {
+    private fun updateList() {
         val list = buscarDados()
-        val list_dates = buscarDatas()
+        val listdates = buscarDatas()
         binding.includeEmpty.emptyState.visibility = if (list.isEmpty()) View.VISIBLE
         else View.GONE
         adapter.submitList(list)
-        adapter2.submitList(list_dates)
+        adapter2.submitList(listdates)
     }
 
     private fun buscarDados() : List<Task>{
@@ -84,35 +81,13 @@ class MainActivity : AppCompatActivity() {
 
     private fun buscarDatas() : List<Task>{
         val busca = ""
-        var listafiltrada: List<Task> = mutableListOf()
+        var listafiltradadatas: List<Task> = mutableListOf()
         try {
-            listafiltrada = MultiApplication.instance.helperDB?.buscarDatas(busca) ?: mutableListOf()
+            listafiltradadatas = MultiApplication.instance.helperDB?.buscarDatas(busca) ?: mutableListOf()
         } catch (ex: Exception){
             ex.printStackTrace()
         }
-        return listafiltrada
-    }
-
-    private fun filtrarDados() :List<Task>{
-        val busca = "TRT"
-        var listafiltrada: List<Task> = mutableListOf()
-        try {
-            listafiltrada = MultiApplication.instance.helperDB?.filtrarTarefas(busca) ?: mutableListOf()
-        } catch (ex: Exception){
-            ex.printStackTrace()
-        }
-        return listafiltrada
-    }
-
-    private fun filtrarDados2() :List<Task>{
-        val busca = "Exemplo"
-        var listafiltrada: List<Task> = mutableListOf()
-        try {
-            listafiltrada = MultiApplication.instance.helperDB?.filtrarTarefas2(busca) ?: mutableListOf()
-        } catch (ex: Exception){
-            ex.printStackTrace()
-        }
-        return listafiltrada
+        return listafiltradadatas
     }
 
     companion object {

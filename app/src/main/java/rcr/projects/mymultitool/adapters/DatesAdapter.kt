@@ -8,7 +8,10 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import rcr.projects.mymultitool.R
+import rcr.projects.mymultitool.application.addWatermark
 import rcr.projects.mymultitool.databinding.DateSquaredBinding
+import rcr.projects.mymultitool.databinding.DateSquaredTwoBinding
 import rcr.projects.mymultitool.model.Task
 import rcr.projects.mymultitool.ui.TasksByDate
 
@@ -16,7 +19,7 @@ class DatesAdapter : ListAdapter<Task, DatesAdapter.DatesViewHolder>(DiffCallbac
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DatesViewHolder {
         val inflater = LayoutInflater.from(parent.context)
-        val binding = DateSquaredBinding.inflate(inflater, parent, false)
+        val binding = DateSquaredTwoBinding.inflate(inflater, parent, false)
         return DatesViewHolder(binding)
     }
 
@@ -31,20 +34,45 @@ class DatesAdapter : ListAdapter<Task, DatesAdapter.DatesViewHolder>(DiffCallbac
         context.startActivity(intent)
     }
 
+
+
     inner class DatesViewHolder(
-        private val binding: DateSquaredBinding
+        private val binding: DateSquaredTwoBinding
     ) : RecyclerView.ViewHolder(binding.root) {
 
         fun bind(item: Task) {
-            binding.txtSquare.text = item.date.substring(0, 2)
-            binding.txtSquare1.text = item.date.substring(3, 5)
+            binding.txtSquare.text = nomeMes(item.date.substring(3, 5))
+            binding.txtSquare1.text = item.date.substring(0, 2)
             binding.txtSquare2.text = item.date.substring(6, 10)
 
             binding.cvDates.setOnClickListener {
                 val date = item.date
                 itemClicado(it, date)
             }
+
+
         }
+    }
+
+
+    fun nomeMes(mes: String): String {
+        val mes = mes
+        var mesStr = ""
+        when (mes) {
+            "01" -> mesStr = "JAN"
+            "02" -> mesStr = "FEV"
+            "03" -> mesStr = "MAR"
+            "04" -> mesStr = "ABR"
+            "05" -> mesStr = "MAI"
+            "06" -> mesStr = "JUN"
+            "07" -> mesStr = "JUL"
+            "08" -> mesStr = "AGO"
+            "09" -> mesStr = "SET"
+            "10" -> mesStr = "OUT"
+            "11" -> mesStr = "NOV"
+            "12" -> mesStr = "DEZ"
+        }
+        return mesStr
     }
 }
 

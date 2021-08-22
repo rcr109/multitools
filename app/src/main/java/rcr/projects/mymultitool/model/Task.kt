@@ -4,6 +4,9 @@ data class Task(
     val title: String,
     val hour: String,
     val date: String,
+    val day: String,
+    val month: String,
+    val year: String,
     val description: String,
     val id: Int = 0
 ) {

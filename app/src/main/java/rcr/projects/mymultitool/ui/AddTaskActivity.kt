@@ -70,6 +70,9 @@ class AddTaskActivity : AppCompatActivity() {
             val task = Task(
                 title = binding.tilTitle.text,
                 date = binding.tilDate.text,
+                day = binding.tilDate.text.substring(0,2),
+                month = binding.tilDate.text.substring(3,5),
+                year = binding.tilDate.text.substring(6,10),
                 hour = binding.tilHour.text,
                 description = binding.tilDescription.text,
                 id = intent.getIntExtra(TASK_ID, 0)
